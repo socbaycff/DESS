@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="ImageCryptUI">
+  <grid id="27dc6" binding="panel1" default-binding="true" layout-manager="BorderLayout" hgap="0" vgap="0">
+    <constraints>
+      <xy x="20" y="20" width="992" height="804"/>
+    </constraints>
+    <properties/>
+    <border type="none"/>
+    <children>
+      <component id="d3f01" class="javax.swing.JButton" binding="loadImageButton" default-binding="true">
+        <constraints border-constraint="North"/>
+        <properties>
+          <text value="Load Image"/>
+        </properties>
+      </component>
+      <component id="bf2a5" class="javax.swing.JLabel" binding="imageLabel">
+        <constraints border-constraint="Center"/>
+        <properties>
+          <text value="Label"/>
+        </properties>
+      </component>
+      <component id="375dd" class="javax.swing.JButton" binding="runDESBtn">
+        <constraints border-constraint="South"/>
+        <properties>
+          <text value="Encrypt - Decypt - Save"/>
+        </properties>
+      </component>
+    </children>
+  </grid>
+</form>
