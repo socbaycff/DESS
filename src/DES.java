@@ -148,13 +148,15 @@ public class DES {
 
     // dich vong trai bit, voi tham so la chuoi bit dau vao, so bit dich
     String leftCircularShift(String input, int numBits) {
-        int n = input.length() * 4;
+        int n = input.length() * 4; // length cua bit = 4 lan length hexa
+        // thuc hien tao bang rule dich 1 bit: vd [2,3,4,5,6,7,8,1]
         int perm[] = new int[n];
         for (int i = 0; i < n - 1; i++)
             perm[i] = (i + 2);
-        perm[n - 1] = 1;
-        while (numBits-- > 0)
-            input = permutation(perm, input);
+        perm[n - 1] = 1; // bit cuoi co vi tri la 1
+
+        while (numBits-- > 0) // lap lai numbit lan
+            input = permutation(perm, input); // dung pbox de dich
         return input;
     }
 
@@ -178,13 +180,15 @@ public class DES {
     String sBox(String input) {
         String output = "";
         input = hextoBin(input);
-        for (int i = 0; i < 48; i += 6) {
-            String temp = input.substring(i, i + 6);
-            int num = i / 6;
-            int row = Integer.parseInt(
-                    temp.charAt(0) + "" + temp.charAt(5), 2);
-            int col = Integer.parseInt(
-                    temp.substring(1, 5), 2);
+        for (int i = 0; i < 48; i += 6) { // lap 8 lan,
+            String temp = input.substring(i, i + 6); // lay tung chuoi 6 bit ra
+            int num = i / 6; // so thu tu cua rule table (0-7)
+            // lay 2 ky tu dau va cuoi lam row
+            int row = Integer.parseInt(temp.charAt(0) + "" + temp.charAt(5), 2);
+            // 4 ky tu o giua lam col
+            int col = Integer.parseInt(temp.substring(1, 5), 2);
+
+            // lay gia tri tu sbox table
             output += Integer.toHexString(
                     sbox[num][row][col]);
         }
