@@ -10,30 +10,22 @@ public class ImageCryptUI {
     private JButton loadImageButton;
     private JLabel imageLabel;
     private JButton runDESBtn;
+    private JLabel newImageLabel;
 
-
-    String imageUrl;
 
     public ImageCryptUI() {
         loadImageButton.addActionListener(actionEvent -> {
-            JFileChooser fileChooser = new JFileChooser();
-            int result = fileChooser.showOpenDialog(null);
-            if (result == JFileChooser.APPROVE_OPTION) {
-                imageUrl = fileChooser.getSelectedFile().getAbsolutePath();
-                System.out.println(fileChooser.getSelectedFile().getAbsolutePath());
-                ImageIcon imageIcon = new ImageIcon(imageUrl);
-                imageLabel.setIcon(imageIcon);
-            }
-
+            ImageIcon imageIcon = new ImageIcon("image.png");
+            imageLabel.setIcon(imageIcon);
+            new ImageCrypt().des();
+            JOptionPane.showMessageDialog(panel1, "Đã mã hoá tạo thành file cipher và giải mã tạo file newImage.png");
         });
 
         runDESBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                int indexOf = imageUrl.lastIndexOf('/');
-                String substring = imageUrl.substring(0, indexOf + 1);
-                new ImageCrypt().des(imageUrl, substring + "cipher", substring + "newImage.jpg");
-                JOptionPane.showMessageDialog(panel1, "Đã mã hoá tạo thành file cipher và giải mã tạo file newImage.jpg, đặt chung thư mục của file input");
+                ImageIcon imageIcon = new ImageIcon("newImage.png");
+                newImageLabel.setIcon(imageIcon);
             }
         });
     }

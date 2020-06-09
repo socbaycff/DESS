@@ -96,7 +96,7 @@ public class DES {
                     {7, 11, 4, 1, 9, 12, 14, 2, 0, 6, 10, 13, 15, 3, 5, 8},
                     {2, 1, 14, 7, 4, 10, 8, 13, 15, 12, 9, 0, 3, 5, 6, 11}}
     };
-    // bang shift left bit
+    // bang so bit dich trai
     int[] shiftBits = {1, 1, 2, 2, 2, 2, 2, 2,
             1, 2, 2, 2, 2, 2, 2, 1};
 
@@ -132,22 +132,21 @@ public class DES {
 
     // xor 2 chuoi bit
     String xor(String a, String b) {
-        // hexadecimal to decimal(base 10)
+        // chuyen chuoi string hexa sang so thap phan
         long t_a = Long.parseUnsignedLong(a, 16);
-        // hexadecimal to decimal(base 10)
         long t_b = Long.parseUnsignedLong(b, 16);
         // xor
         t_a = t_a ^ t_b;
-        // decimal to hexadecimal
+        // chuyen so thap phan sang hexa
         a = Long.toHexString(t_a);
-        // prepend 0's to maintain length
+        // them cac ky tu 0 de duy tri do dai cua chuoi bit
         while (a.length() < b.length())
             a = "0" + a;
         return a;
     }
 
     // dich vong trai bit, voi tham so la chuoi bit dau vao, so bit dich
-    String leftCircularShift(String input, int numBits) {
+    String leftCircularShift(String input, int soBitDich) {
         int n = input.length() * 4; // length cua bit = 4 lan length hexa
         // thuc hien tao bang rule dich 1 bit: vd [2,3,4,5,6,7,8,1]
         int perm[] = new int[n];
@@ -155,7 +154,7 @@ public class DES {
             perm[i] = (i + 2);
         perm[n - 1] = 1; // bit cuoi co vi tri la 1
 
-        while (numBits-- > 0) // lap lai numbit lan
+        while (soBitDich-- > 0) // lap lai soBitDich lan
             input = permutation(perm, input); // dung pbox de dich
         return input;
     }
@@ -180,8 +179,8 @@ public class DES {
     String sBox(String input) {
         String output = "";
         input = hextoBin(input);
-        for (int i = 0; i < 48; i += 6) { // lap 8 lan,
-            String temp = input.substring(i, i + 6); // lay tung chuoi 6 bit ra
+        for (int i = 0; i < 48; i += 6) { // lap 8 lan, 8 sbox
+            String temp = input.substring(i, i + 6); // lay tung block 6 bit ra
             int num = i / 6; // so thu tu cua rule table (0-7)
             // lay 2 ky tu dau va cuoi lam row
             int row = Integer.parseInt(temp.charAt(0) + "" + temp.charAt(5), 2);
@@ -195,7 +194,7 @@ public class DES {
         return output;
     }
 
-    // moi round : ham f duoc code truc tiep, khong tao ham con
+    // ham round
     String round(String input, String key, int num) {
         // tach 2 chuoi left right
         String left = input.substring(0, 8);
@@ -211,12 +210,6 @@ public class DES {
         temp = permutation(P, temp);
         // xor
         left = xor(left, temp);
-        // in ra chuoi bit sau moi round
-        System.out.println("Round "
-                + (num + 1) + " "
-                + right.toUpperCase()
-                + " " + left.toUpperCase() + " "
-                + key.toUpperCase());
 
         // swapper
         return right + left;
@@ -270,18 +263,16 @@ public class DES {
     public static void main(String args[]) {
         String plaintextHexa = "123456ABCD132536";
         String keyHexa = "AABB09182736CCDD";
+        System.out.println("PlainText: " + plaintextHexa);
 
-        DES cipher = new DES();
+        DES des = new DES();
         System.out.println("Bat dau ma hoa:\n");
-        plaintextHexa = cipher.encrypt(plaintextHexa, keyHexa);
-        System.out.println(
-                "\nCipher Text: " + plaintextHexa.toUpperCase() + "\n");
+        plaintextHexa = des.encrypt(plaintextHexa, keyHexa);
+        System.out.println("Cipher Text: " + plaintextHexa.toUpperCase() + "\n");
 
 
         System.out.println("Giai ma\n");
-        plaintextHexa = cipher.decrypt(plaintextHexa, keyHexa);
-        System.out.println(
-                "\nPlain Text: "
-                        + plaintextHexa.toUpperCase());
+        plaintextHexa = des.decrypt(plaintextHexa, keyHexa);
+        System.out.println("Plain Text: " + plaintextHexa.toUpperCase());
     }
 }

@@ -13,18 +13,31 @@
           <text value="Load Image"/>
         </properties>
       </component>
-      <component id="bf2a5" class="javax.swing.JLabel" binding="imageLabel">
-        <constraints border-constraint="Center"/>
-        <properties>
-          <text value="Label"/>
-        </properties>
-      </component>
       <component id="375dd" class="javax.swing.JButton" binding="runDESBtn">
         <constraints border-constraint="South"/>
         <properties>
-          <text value="Encrypt - Decypt - Save"/>
+          <text value="Load NewImage"/>
         </properties>
       </component>
+      <grid id="4e2df" layout-manager="BorderLayout" hgap="0" vgap="0">
+        <constraints border-constraint="Center"/>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="a849f" class="javax.swing.JLabel" binding="imageLabel">
+            <constraints border-constraint="West"/>
+            <properties>
+              <text value=""/>
+            </properties>
+          </component>
+          <component id="32d2c" class="javax.swing.JLabel" binding="newImageLabel">
+            <constraints border-constraint="East"/>
+            <properties>
+              <text value=""/>
+            </properties>
+          </component>
+        </children>
+      </grid>
     </children>
   </grid>
 </form>
