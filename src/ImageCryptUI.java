@@ -35,7 +35,6 @@ public class ImageCryptUI {
         frame.setContentPane(new ImageCryptUI().panel1);
         frame.setBounds(50, 50, 500, 500);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        //frame.pack();
         frame.setVisible(true);
     }
 }

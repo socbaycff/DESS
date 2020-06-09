@@ -1,5 +1,5 @@
 @SuppressWarnings("ALL")
-public class DES {
+public class MoPhongDES {
     // cac bang rule Pbox, Sbox
     // IP Table
     int[] IP = {58, 50, 42, 34, 26, 18,
@@ -105,6 +105,7 @@ public class DES {
         int n = input.length() * 4;
         input = Long.toBinaryString(
                 Long.parseUnsignedLong(input, 16));
+        // duy tri do dai cua bit
         while (input.length() < n)
             input = "0" + input;
         return input;
@@ -115,6 +116,7 @@ public class DES {
         int n = (int) input.length() / 4;
         input = Long.toHexString(
                 Long.parseUnsignedLong(input, 2));
+        // duy tri do dai cua bit
         while (input.length() < n)
             input = "0" + input;
         return input;
@@ -265,7 +267,7 @@ public class DES {
         String keyHexa = "AABB09182736CCDD";
         System.out.println("PlainText: " + plaintextHexa);
 
-        DES des = new DES();
+        MoPhongDES des = new MoPhongDES();
         System.out.println("Bat dau ma hoa:\n");
         plaintextHexa = des.encrypt(plaintextHexa, keyHexa);
         System.out.println("Cipher Text: " + plaintextHexa.toUpperCase() + "\n");
