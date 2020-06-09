@@ -1,5 +1,6 @@
 import java.util.Random;
 
+@SuppressWarnings("ALL")
 public class ImageCrypt {
     // ma hoa anh voi key dc sinh ra, luu 2 file mahoa va file sau khi dc giai ma
     public void des() {
