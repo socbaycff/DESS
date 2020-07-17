@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 @SuppressWarnings("ALL")
 public class ImageCrypt {
-    // test ma hoa anh voi key dc sinh ra, luu 2 file mahoa va file sau khi dc giai ma
+    // ma hoa anh voi key dc sinh ra, luu 2 file mahoa va file sau khi dc giai ma
     public void des() {
         try {
             //sinh key hexa random bang java
